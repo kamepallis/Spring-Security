@@ -60,10 +60,23 @@
 			call the AuthMaager.check to check the usr is public or protect
 			
 		DefaultLoginPageGeneraor --> generates the loginpage
-		UserNamePasswordAuthFileter --> 
+		UserNamePasswordAuthFileter --> to extract the userrname/passwords , 
 		
 			
+		For the first time , JSESSIONID will be generated and stored as cookie,
+			as long as the same cokkie available it will not ask the credentials again
 			
+	#Eazy Bank application
+		*Services without Security
+			-> contact
+			-> noices
+		*Services with Security
+			-> myAccount
+			-> myBalance
+			-> myLoans
+			-> myCards
+			
+		
 		
 			
 			
