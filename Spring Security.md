@@ -11,3 +11,8 @@
 		username as user
 		password will be printed on console(every time new)
 		
+		we can configure our own credentials in .properties file
+		https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html
+		
+		spring.security.user.name  default :user
+		spring.security.user.password

@@ -8,7 +8,7 @@ public class WelcomeController {
 
     @GetMapping("/welcome")
     public String sayWelcome() {
-        return "Welcome to Spring with security";
+        return "Welcome to Spring with security custom credeentials";
     }
 
 }
