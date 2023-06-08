@@ -6,3 +6,8 @@
 	 -> if no security - Vulnerabilities, data breach, brand , trust issue
 	 -> CSRF, broken authentication
 
+# Add Spring Security Dependency
+	-> SpSec defualtly provides a login mechanisam
+		username as user
+		password will be printed on console(every time new)
+		
