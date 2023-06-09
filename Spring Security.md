@@ -75,7 +75,24 @@
 			-> myBalance
 			-> myLoans
 			-> myCards
-			
+	* By Default SpSec protects all the paths present in the web application-properties
+	
+		SpringBootWebSecurityConfiguration.java
+		
+		@Bean
+		@Order(SecurityProperties.BASIC_AUTH_ORDER)
+		SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+			http.authorizeHttpRequests().anyRequest().authenticated();
+			http.formLogin();
+			http.httpBasic();
+			return http.build();
+		}
+		
+	* If user specifies his own SecurityFilterChain bean , then the default configuration will back off
+	
+	
+		
+		
 		
 		
 			
