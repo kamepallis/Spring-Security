@@ -78,7 +78,7 @@
 	* By Default SpSec protects all the paths present in the web application-properties
 	
 		SpringBootWebSecurityConfiguration.java
-		
+		# Default configuration
 		@Bean
 		@Order(SecurityProperties.BASIC_AUTH_ORDER)
 		SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
@@ -89,6 +89,24 @@
 		}
 		
 	* If user specifies his own SecurityFilterChain bean , then the default configuration will back off
+	
+	#Custom configuration
+	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		http.autheticateHttpRequests()
+		.requestMatchers("/myAccount", "/myBalance/**").autheticated()
+		.requestMatchers("/contact").permitAll()
+		.and().formLogin().and().httpBasic;
+		
+		return http.build();
+		}
+		
+	#denyAll()
+		-> First it authenticates and then auhorises(deny all)
+		http.autheticateHttpRequests().anyRequest().denyAll();
+	#permitAll()
+		-> permits all without authenication
+		http.autheticateHttpRequests().anyRequest().denyAll();
+		
 	
 	
 		
