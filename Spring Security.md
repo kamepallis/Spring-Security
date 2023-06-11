@@ -111,7 +111,7 @@
 		Solution : store in InMemory(not recommended0 
 				   store in DB
 	
-		
+	#InMemoryUserDetailsManager
 	Approach1:
 	 @Bean
 	 public InMemoryUserDetailsManager userDetailaManager() {
@@ -149,6 +149,16 @@
 	
 	FreeMySQlHosting.com
 	SQlEctron
+	
+	#JdbcUserDetialsManager
+	@Bean
+	public UserDetailsManager userDetailsManager(DataSource dataSource) {
+		return new JdbcUserDetialsManager(dataSource);
+	}
+	spring.datasource.url=jdbc:postgresql://localhost:5432//springSecurity
+	spring.datasource.username=sudhir
+	spring.datasource.password=
+	spring.datasource.driver-class-name=
 		
 		
 		
