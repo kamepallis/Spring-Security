@@ -140,8 +140,15 @@
 	public PasswordEncoder passwordEncoder() {
 		return NoOpPasswordEncoder.getInstance();
 	}
-			
 		
+	UserDetailsService.java(interface)  loadByUserName();
+		-> UserDetailsManager.java (interface) createUser(), deleteUser(), updateUser(), changePassword() etc
+				-> InMemoryUserDetailsMaanger, JdbcUserDetialsManager , LdapUserDetailsManager classes
+	UserDetails interface : Represent the detaiils of end user (username, passowird, auhorities)
+				->getAuthorities(), getPassword(), getUserName(), isAccountNonExpired(), isAccountNonLocked(), isEnabled(), isCredentialNonExpired()
+	
+	FreeMySQlHosting.com
+	SQlEctron
 		
 		
 		
