@@ -112,13 +112,34 @@
 				   store in DB
 	
 		
-	
-	
+	Approach1:
+	 @Bean
+	 public InMemoryUserDetailsManager userDetailaManager() {
+		UserDetails admin = User.withDefaultPasswordEncoder()
+								.username("admin")
+								.password("admin123")
+								.authorities("admin)
+								.build();
+								
+		return new InMemoryUserDetailsManager(admin, ...);
+	 }
 		
 		
+	Approach2:
+	@Bean
+	public InMemoryUserDetailsMaanger userDetailsManager() {
+		UerDetails user = User.withUserName("admin")
+							  .password("admin123)
+							  .authorities("admin)
+							  .build();
+		return new InMemoryUserDetailsMaanger(admin, ...);
 		
+	}
 		
-			
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return NoOpPasswordEncoder.getInstance();
+	}
 			
 		
 		
