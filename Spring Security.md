@@ -107,6 +107,11 @@
 		-> permits all without authenication
 		http.autheticateHttpRequests().anyRequest().denyAll();
 		
+	* So far we configure only one credentials in application properties
+		Solution : store in InMemory(not recommended0 
+				   store in DB
+	
+		
 	
 	
 		
