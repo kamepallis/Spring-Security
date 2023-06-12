@@ -59,10 +59,11 @@ public class PojectSecurityConfiguration {
         return new InMemoryUserDetailsManager(user);
     }*/
 
+    /** Commented because we have created our own implementation for Userdetails Service
     @Bean
     public UserDetailsService userDetailsService(DataSource dataSource) {
         return new JdbcUserDetailsManager(dataSource);
-    }
+    }*/
 
     @Bean
     public PasswordEncoder passwordEncoder() {
