@@ -160,5 +160,18 @@
 	spring.datasource.password=
 	spring.datasource.driver-class-name=
 		
+	#Custom implementation for UserDetailsService
+		-> Create  class by implementing UserDetailsService
+		-> Override the loadByUserName(String username) method and provide your 
+			own bl to fetch the user details(DB etc)
+		-> Comment out any exiting UsrdetailsService implementation
+		
+		@Service
+		public class EazyBankUserDetailsService implements UserDetailsService {
+			@override
+			public UserDetails loadByUserName(String username) {
+				// Write your own logic to fetch and return UserDetails
+			}		
+		}
 		
 		
