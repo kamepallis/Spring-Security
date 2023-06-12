@@ -107,15 +107,58 @@
 		-> permits all without authenication
 		http.autheticateHttpRequests().anyRequest().denyAll();
 		
+	* So far we configure only one credentials in application properties
+		Solution : store in InMemory(not recommended0 
+				   store in DB
 	
+	#InMemoryUserDetailsManager
+	Approach1:
+	 @Bean
+	 public InMemoryUserDetailsManager userDetailaManager() {
+		UserDetails admin = User.withDefaultPasswordEncoder()
+								.username("admin")
+								.password("admin123")
+								.authorities("admin)
+								.build();
+								
+		return new InMemoryUserDetailsManager(admin, ...);
+	 }
+		
+		
+	Approach2:
+	@Bean
+	public InMemoryUserDetailsMaanger userDetailsManager() {
+		UerDetails user = User.withUserName("admin")
+							  .password("admin123)
+							  .authorities("admin)
+							  .build();
+		return new InMemoryUserDetailsMaanger(admin, ...);
+		
+	}
+		
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return NoOpPasswordEncoder.getInstance();
+	}
+		
+	UserDetailsService.java(interface)  loadByUserName();
+		-> UserDetailsManager.java (interface) createUser(), deleteUser(), updateUser(), changePassword() etc
+				-> InMemoryUserDetailsMaanger, JdbcUserDetialsManager , LdapUserDetailsManager classes
+	UserDetails interface : Represent the detaiils of end user (username, passowird, auhorities)
+				->getAuthorities(), getPassword(), getUserName(), isAccountNonExpired(), isAccountNonLocked(), isEnabled(), isCredentialNonExpired()
 	
-		
-		
-		
-		
-			
-			
-		
+	FreeMySQlHosting.com
+	SQlEctron
+	
+	#JdbcUserDetialsManager
+	@Bean
+	public UserDetailsManager userDetailsManager(DataSource dataSource) {
+		return new JdbcUserDetialsManager(dataSource);
+	}
+	spring.datasource.url=jdbc:postgresql://localhost:5432//springSecurity
+	spring.datasource.username=sudhir
+	spring.datasource.password=
+	spring.datasource.driver-class-name=
 		
 		
 		
