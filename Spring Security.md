@@ -173,5 +173,32 @@
 				// Write your own logic to fetch and return UserDetails
 			}		
 		}
+######################## Section 4 	PassWord Encoding ###############################################################################
+If no password encoder provided, it uses default pass encoder , which uses paln text, which is not recommended
+comparison will happen in palin text presentedPwd vs Stored Pwd
+
+*Encoding -> converting data from one form to other form with some encoding technique, easily reversible(decode), not recommended Ex: Unicode, Base64
+*Encryption-> Converting to other form with help of some algo and secret key, better thean encoding, reversilble if you have algo/key
+*Hashing-> converting to hashvalue, non-convertible
+
+PassWordEncoder.java (i)
+		* String encode(CharSequence charSequence) , converts the raw password based on the logic
+		* boolean matches(rawpassword, encodedPassword) 
+		* default boolean upgradeEncode(encodedPassword) { return false;}
+	$NoOpPasswordEncoder
+	$SandardPasswordEncoder
+	$Pbkdf2PasswordEncoder  ------- Not recommended
+	
+	$BCrytPasswordEncoder, while computing it demands computation power
+	$SCryptPassordEncoder, demands computation
+	$Argon2PasswordEncoder, 3D, demands computation power, ram, multithread
+
+
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
+	While registering enocde the password and save;
 		
 		
