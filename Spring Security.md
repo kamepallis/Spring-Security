@@ -200,5 +200,44 @@ PassWordEncoder.java (i)
 	}
 
 	While registering enocde the password and save;
+	
+	
+########################################################## Section 5 Authenication Providers
+We can provide multple authenication providers
+		UserNamePassword/ Oauth etcs
 		
+interface AuthenticatonProvider {
+
+	Authenication authenicate(Authentication authentication) throws AuthenticationEception;
+	boolean supports(Class<> authenicate);
+	
+}
+We can remove all other UserDetails implementation
+
+@Service 
+public calss EazyBankUserPwdAuthProvider implemts AuthenticationProvider {
+	
+	@override
+	public Authentication authenicate(Authentication authentication) {
+		String useName = authentication.getName();
+        String password = authentication.getCredentials().toString();
+        List<Customer> customers = customerRepository.findByEmail(useName);
+        if (customers.size()> 0) {
+            if(passwordEncoder.matches(password, customers.get(0).getPwd())) {
+                List<GrantedAuthority> authorities = new ArrayList<>();
+                authorities.add(new SimpleGrantedAuthority(customers.get(0).getRoles()));
+                return new UsernamePasswordAuthenticationToken(useName, password, authorities);
+            } else {
+                throw new BadCredentialsException("Invalid credentials");
+            }
+        } else {
+            throw new BadCredentialsException("No user found");
+        }
 		
+	}
+	
+	@Override
+    public boolean supports(Class<?> authentication) {
+        return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
+    }
+}
