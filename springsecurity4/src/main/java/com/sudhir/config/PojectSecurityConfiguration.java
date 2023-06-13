@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -37,37 +38,8 @@ public class PojectSecurityConfiguration {
                 .and().httpBasic();
         return http.build();
     }
-
-
-   /**@Bean
-    public InMemoryUserDetailsManager userDetailsManager() {
-        /**
-         * Approach 1: we are usinf default Password Encoding
-
-        UserDetails admin = User.withDefaultPasswordEncoder()
-                .username("admin").password("admin123").authorities("admin").build();
-        UserDetails reader = User.withDefaultPasswordEncoder()
-                .username("reader").password("reader123").authorities("read").build();
-        return new InMemoryUserDetailsManager(admin, reader);
-         * /
-
-        /**
-         * Approach2 : Creating custom passord Encoder
-         * Here we are using NoOpPasswordEncoder
-         * /
-        UserDetails user = User.withUsername("admin")
-                .password("admin").authorities("admin").build();
-        return new InMemoryUserDetailsManager(user);
-    }*/
-
-    /** Commented because we have created our own implementation for Userdetails Service
-    @Bean
-    public UserDetailsService userDetailsService(DataSource dataSource) {
-        return new JdbcUserDetailsManager(dataSource);
-    }*/
-
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
 }
