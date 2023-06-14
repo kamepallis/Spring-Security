@@ -214,6 +214,10 @@ interface AuthenticatonProvider {
 }
 We can remove all other UserDetails implementation
 
+SecurityFilterChain
+PassWordEncoder
+AuthenticatonProvider
+
 @Service 
 public calss EazyBankUserPwdAuthProvider implemts AuthenticationProvider {
 	
